@@ -1,0 +1,62 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+#tooltipPizarra {
+  display: block;
+  position: absolute;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 12px;
+  box-shadow: 4px 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 3;
+  transform: translate(-50%, -140%);
+}
+.pizarraGrafica {
+  margin-bottom: 20px;
+}
+.pizarraGrafica > .titulo {
+  background-color: grey;
+  color: white;
+  padding: 12px 16px;
+  font-weight: bold;
+}
+.pizarraGrafica > .blackboard svg {
+  background: #fff;
+  -webkit-transform: rotateX(180deg);
+  -ms-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.pizarraGrafica > .blackboard svg .goal {
+  stroke: #4a4a4a;
+  stroke-width: 1;
+}
+.pizarraGrafica > .blackboard svg .stimate {
+  stroke: #99bcbf;
+  stroke-width: 1;
+  stroke-dasharray: 5, 5;
+}
+.pizarraGrafica > .blackboard svg .grid {
+  stroke: rgba(0, 0, 0, 0.05);
+  stroke-width: 1;
+}
+.pizarraGrafica > .blackboard svg text {
+  transform: scaleY(-1) translateX(-0.5%) translateY(4px);
+}
+.pizarraGrafica > .totales {
+  background-color: darkgray;
+  color: white;
+  font-weight: bold;
+  text-align: right;
+  text-transform: uppercase;
+  padding: 22px;
+  transform: translateY(-5px);
+  font-size: 12px;
+}
+.pizarraGrafica > .totales span {
+  font-size: 24px;
+  padding: 0px 15px 0px 5px;
+}
+.hiddenGraphic {
+  display: none !important;
+}

@@ -1,0 +1,113 @@
+<p      id="tooltipPizarra"
+        [ngClass]="{hiddenGraphic: visor != true}">
+        <strong id="valorlogro"></strong>/<strong id="valorestima"></strong> {{oportunidad}}
+</p>
+<div *ngFor="let user of dataPizarraGrafica; index as a" class="pizarraGrafica" (window:scroll)="scrollPizarra()">
+        <div class="titulo">{{user.code}} - {{user.name}}</div>
+        <div class="blackboard" id="blackboard">
+                <svg  version="1.1" 
+                        id="estimar"
+                        [attr.viewBox]="(-distancePoints*1.5)+' '+-40+' '+(distancePoints*lastDay+distancePoints*2)+' '+height">
+                        <!-- Fines de semana -->
+                        <g>
+                                <rect   *ngFor="let a of user.data; index as i"
+                                        [attr.x]="i*distancePoints-distancePoints/2" 
+                                        y="-50" 
+                                        [attr.width]="distancePoints" 
+                                        [attr.height]="height+50"
+                                        style="fill:#F5F7F9;"
+                                        [ngClass]="{hiddenGraphic: a.finde != true}" />
+                        </g>
+                        <!-- Lineas de Estimacion y Logro día -1 -->
+                        <g>
+                                <line   class="stimate"
+                                        [attr.x1]="-distancePoints" 
+                                        [attr.y1]="((user.data[0].estimacion) * height/maxValue[a])" 
+                                        x2="0" 
+                                        [attr.y2]="((user.data[0].estimacion) * height/maxValue[a])"/>
+                                <line   class="goal" 
+                                        [attr.x1]="-distancePoints" 
+                                        [attr.y1]="((user.data[0].logro) * height/maxValue[a])" 
+                                        x2="0" 
+                                        [attr.y2]="((user.data[0].logro) * height/maxValue[a])"/>
+                        </g>
+                        <!-- Lineas de Estimacion -->
+                        <g>
+                                <line   class="stimate"
+                                        *ngFor="let dato of user.data; index as i"
+                                        [attr.x1]="i*distancePoints" 
+                                        [attr.y1]="((dato.estimacion) * height/maxValue[a])" 
+                                        [attr.x2]="i*distancePoints+distancePoints" 
+                                        [attr.y2]="((estimadoY2[a][i]) * height/maxValue[a])"/>
+                        </g>
+                        <!-- Lineas de Logro -->
+                        <g>
+                                <line   class="goal" 
+                                        *ngFor="let dato of user.data; index as i"
+                                        [attr.x1]="i*distancePoints" 
+                                        [attr.y1]="((dato.logro) * height/maxValue[a])" 
+                                        [attr.x2]="i*distancePoints+distancePoints" 
+                                        [attr.y2]="((logroY2[a][i]) * height/maxValue[a])"/>
+                        </g>
+                        <!-- Grilla -->
+                        <g>
+                                <line   class="grid"
+                                        *ngFor="let item of user.data; index as i"
+                                        [attr.x1]="-distancePoints*1.5" 
+                                        [attr.y1]="i * height/maxValue[a]" 
+                                        [attr.x2]="distancePoints * lastDay + distancePoints*1.5" 
+                                        [attr.y2]="i * height/maxValue[a]"/>
+                        </g>
+                        <!-- Puntos de Logro -->
+                        <g>
+                                <circle class="circle" 
+                                        *ngFor="let dato of user.data; index as i"
+                                        [attr.cx]="i * distancePoints" 
+                                        [attr.cy]="((dato.logro) * height/maxValue[a])"  
+                                        [ngClass]="{hiddenGraphic: dato.finde === true}"
+                                        [attr.fill]="
+                                                dato.estimacion === 0 ? blanco : rojo
+                                                && 
+                                                dato.logro > dato.estimacion ? azul : rojo 
+                                                && 
+                                                dato.logro === dato.estimacion ? verde : rojo 
+                                                "
+                                        [attr.stroke]="negro"
+                                        [attr.stroke-width]="dato.estimacion === 0 ? 1 : 0"
+                                        r="4"/>
+                        </g>
+                        <!-- Hover de puntos de logro -->
+                        <g>
+                                <circle class="circle" 
+                                        *ngFor="let dato of user.data; index as i"
+                                        [attr.cx]="i * distancePoints" 
+                                        [attr.cy]="((dato.logro) * height/maxValue[a])"  
+                                        [ngClass]="{hiddenGraphic: dato.logro === null}"
+                                        fill="#00000000"
+                                        (mouseout)="HideTooltip(this)" 
+                                        (mouseover)="ShowTooltip(dato.estimacion,dato.logro)"
+                                        r="12"/>
+                        </g>
+                        <!-- Números días del mes -->
+                        <g>
+                                <text   *ngFor="let day of user.data; index as i"
+                                        [attr.x]="i * distancePoints" 
+                                        y="23" 
+                                        [attr.fill]="negro">
+                                        {{i+1}}
+                                </text>
+                        </g>
+                        <!-- Indicador día actual -->
+                        <circle [attr.cx]="distancePoints * (currentDay - 1)" 
+                                cy="-22"  
+                                [attr.stroke]="negro"
+                                stroke-width="1"
+                                fill="#00000000"
+                                r="12"/>
+                </svg>
+        </div>
+        <div class="totales">
+        Total
+        <span>{{totalesPizarra[a].totalLogro}}/{{totalesPizarra[a].totalEsti}}</span>
+        </div>
+</div>
