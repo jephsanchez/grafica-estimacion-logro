@@ -7,6 +7,34 @@ import { Component, HostListener } from '@angular/core';
 })
 export class AppComponent  {
 
+      resumenXProducto = [
+        {
+            productNemo: 'AAA',
+            tooltip: 'Créditos en cuotas',
+            optyCursada: 16,
+            optyCommitted: 16
+        },
+        {
+            productNemo: 'BBB',
+            tooltip: 'Créditos de consumo',
+            optyCursada: 3,
+            optyCommitted: 10
+        },
+        {
+            productNemo: 'CCC',
+            tooltip: 'Créditos de consumo',
+            optyCursada: 27,
+            optyCommitted: 20
+        },
+        {
+            productNemo: 'DDD',
+            tooltip: 'Créditos de consumo',
+            optyCursada: 5,
+            optyCommitted: 6
+        }
+    ];
+
+
   widthGrafica:number = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)-40;
   heightGrafica:number = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
   height:number = 350;
