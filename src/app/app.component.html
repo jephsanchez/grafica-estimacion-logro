@@ -1,37 +1,38 @@
 <div style="max-width: 600px;">
-        <div class="product" *ngFor="let prod of resumenXProducto">
-            <p class="product-name">{{prod.productNemo}} <i
+        <div class="product">
+            <p class="product-name">AAA <i
                     class="icon-information"></i></p>
             <div class="progress-bar">
-                <div *ngIf="prod.optyCursada != undefined && prod.optyCommitted != 0"
-                    [ngClass]="{'marcador': prod.optyCursada * 100 / prod.optyCommitted <= 100}">
+                <div *ngIf="cursade != undefined && 20 != 0"
+                    [ngClass]="{'marcador': cursade * 100 / 20 <= 100}">
                     <div class="container"></div>
-                    <div class="bar" [style.width]="(((prod.optyCursada * 100) / prod.optyCommitted) * 66.66) / 100 + '%'" [ngClass]="{
-                        'bg-red': (prod.optyCursada * 100) / prod.optyCommitted < 70,
-                        'bg-yellow': (prod.optyCursada * 100) / prod.optyCommitted >= 70 && (prod.optyCursada * 100) / prod.optyCommitted < 91,
-                        'bg-green': (prod.optyCursada * 100) / prod.optyCommitted >= 91,
-                        'golazo': (prod.optyCursada * 100) / prod.optyCommitted > 100}">
+                    <div class="bar" [style.width]="(((cursade * 100) / 20) * 66.66) / 100 + '%'" [ngClass]="{
+                        'bg-red': (cursade * 100) / 20 < 70,
+                        'bg-yellow': (cursade * 100) / 20 >= 70 && (cursade * 100) / 20 < 91,
+                        'bg-green': (cursade * 100) / 20 >= 91,
+                        'golazo': (cursade * 100) / 20 > 100}">
                     </div>
                 </div>
-                <div *ngIf="prod.optyCursada != undefined && prod.optyCommitted == 0"
-                    [ngClass]="{'marcador': prod.optyCursada * 100 / 100 <= 100}">
+                <div *ngIf="cursade != undefined && 20 == 0"
+                    [ngClass]="{'marcador': cursade * 100 / 100 <= 100}">
                     <div class="container"></div>
-                    <div class="bar" [style.width]="(((prod.optyCursada * 100) / 100) * 66.66) / 100 + '%'" [ngClass]="{
-                        'bg-red': (prod.optyCursada * 100) / 100 < 70,
-                        'bg-yellow': (prod.optyCursada * 100) / 100 >= 70 && (prod.optyCursada * 100) / 100 < 91,
-                        'bg-green': (prod.optyCursada * 100) / 100 >= 91,
-                        'golazo': (prod.optyCursada * 100) / 100 > 100}">
+                    <div class="bar" [style.width]="(((cursade * 100) / 100) * 66.66) / 100 + '%'" [ngClass]="{
+                        'bg-red': (cursade * 100) / 100 < 70,
+                        'bg-yellow': (cursade * 100) / 100 >= 70 && (cursade * 100) / 100 < 91,
+                        'bg-green': (cursade * 100) / 100 >= 91,
+                        'golazo': (cursade * 100) / 100 > 100}">
                     </div>
                 </div>
-                <p *ngIf="prod.optyCursada == undefined">No hay datos disponibles</p>
+                <p *ngIf="cursade == undefined">No hay datos disponibles</p>
             </div>
-            <p class="change-text" *ngIf="prod.optyCursada != undefined">
-                <span>{{prod.optyCursada}}</span>/<span>{{prod.optyCommitted}} </span>
+            <p class="change-text" *ngIf="cursade != undefined">
+                <span>{{cursade}}</span>/<span>20 </span>
                 <i class="icon-information"></i>
             </p>
         </div>
 </div>
-
+<p>Valor: <b>{{cursade}}</b></p>
+<input type="range" [(ngModel)]="cursade" min="0" max="30">
         <hr>
         <br>
 
