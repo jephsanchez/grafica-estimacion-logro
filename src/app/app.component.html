@@ -31,7 +31,7 @@
             </p>
         </div>
 </div>
-<p>Valor: <b>{{cursade}}</b></p>
+<p>Valor: <input type="number" [(ngModel)]="cursade" min="0" max="30"></p>
 <input type="range" [(ngModel)]="cursade" min="0" max="30">
         <hr>
         <br>
