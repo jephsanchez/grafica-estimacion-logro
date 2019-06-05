@@ -92,9 +92,9 @@
                                 <line   class="grid"
                                         *ngFor="let item of user.data; index as i"
                                         [attr.x1]="-distancePoints*1.5" 
-                                        [attr.y1]="i * height/maxValue[a]" 
+                                        [attr.y1]="grillaRatio * i * height/maxValue[a]" 
                                         [attr.x2]="distancePoints * lastDay + distancePoints*1.5" 
-                                        [attr.y2]="i * height/maxValue[a]"/>
+                                        [attr.y2]="grillaRatio * i * height/maxValue[a]"/>
                         </g>
                         <!-- Puntos de Logro -->
                         <g>

@@ -44,7 +44,7 @@ export class AppComponent  {
         {
           "dia": 4,
           "estimacion": 6,
-          "logro": 4,
+          "logro": 5,
           "finde": false
         },
         {
@@ -1375,6 +1375,7 @@ export class AppComponent  {
   visor:boolean = false;
   scrollPositionY:number = 0;
   totalesPizarra:any[] = [];
+  grillaRatio:number;
   
   constructor() { }
 
@@ -1408,11 +1409,12 @@ export class AppComponent  {
       this.estiMax.push(Math.max.apply(Math, estiMaxA));
       this.logroMax.push(Math.max.apply(Math, logroMaxA));
       if(this.estiMax[i] > this.logroMax[i]) {
-        this.maxValue.push(this.estiMax[i]+2)
+        this.maxValue.push(this.estiMax[i]*1.175)
       }
       else if(this.estiMax[i] < this.logroMax[i] || this.estiMax[i] === this.logroMax[i]) {
-        this.maxValue.push(this.logroMax[i]+2)
+        this.maxValue.push(this.logroMax[i]*1.175)
       }
+      this.grillaRatio = this.maxValue[0] / this.lastDay;
       let sumaLogro = logroMaxA.reduce(function(a, b){ return a + b; })
       let sumaEsti = estiMaxA.reduce(function(a, b){ return a + b; })
       this.totalesPizarra.push({
